@@ -1,0 +1,44 @@
+<%- include("partials/header"); -%>
+
+
+<div class="main-content">
+  <div class="container mt-7">
+    <!-- Table -->
+
+    <div class="row">
+      <div class="col-xl-8 m-auto order-xl-2 mb-5 mb-xl-0">
+        <div class="card card-profile shadow">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                  <img src="/images/<%=imgURL%>" class="circle-img profile_image">
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <h3>
+              <%=name%><span class="font-weight-light">, <%=age%></span>
+            </h3>
+            <div class="h5 font-weight-300">
+              <i class="ni location_pin mr-2"></i><%=address%>
+            </div>
+            <div class="h5 mt-4">
+              <i class="ni mr-2"></i>₹<%=salary%>
+            </div>
+
+            <div>
+              <p class="ni education_hat mr-2"><%=timeShift%></p>
+              <p class="ni education_hat mr-2"><%=phone%></p>
+              <p class="ni education_hat mr-2"><%=email%></p>
+              <p class="ni education_hat mr-2"><%=more%></p>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<%- include("partials/footer"); -%>

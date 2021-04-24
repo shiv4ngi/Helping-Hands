@@ -1,0 +1,180 @@
+<%- include("partials/header"); -%>
+
+
+<script type="text/javascript">
+  function validform() {
+
+    var a = document.forms["my-form"]["name"].value;
+    var b = document.forms["my-form"]["email"].value;
+    var c = document.forms["my-form"]["age"].value;
+    var d = document.forms["my-form"]["address"].value;
+    var e = document.forms["my-form"]["phone"].value;
+    var checked_gender = document.querySelector('input[name = "gender"]:checked');
+    var checked_shift = document.querySelector('input[name = "timeShift"]:checked');
+
+    if (a == null || a == "") {
+      alert("Please Enter Your Full Name");
+      return false;
+    } else if (b == null || b == "") {
+      alert("Please Enter Your Email Address");
+      return false;
+    } else if (c == null || c == "") {
+      alert("Please Enter Patients Age");
+      return false;
+    } else if (d == null || d == "") {
+      alert("Please Enter Your Permanent Address");
+      return false;
+    } else if (e == null || e == "") {
+      alert("Please Enter Your Phone Number");
+      return false;
+    } else if (checked_gender == null) {
+      alert('Gender not specified.');
+      return false;
+    } else if (checked_shift == null) {
+      alert('Time shift not specified.');
+      return false;
+    }
+
+  }
+</script>
+
+
+<script type="text/javascript">
+  function change_button(termsChkbx, someBtn) {
+    var btn = document.getElementById(someBtn);
+    if (termsChkbx.checked == true) {
+      btn.disabled = "";
+    } else {
+      btn.disabled = "disabled";
+    }
+  }
+</script>
+
+
+
+
+<div class="bg-img">
+
+
+  <div class="container">
+    <form name="my-form" onsubmit="return validform()" class="form-horizontal" action="/patientLogin" method="post" role="form">
+      <h2>Patients Registration</h2>
+      <br>
+
+      <!-- <div class="form-group">
+        <div class="picture-container">
+          <div class="picture">
+            <img
+              src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no"
+              class="picture-src" id="wizardPicturePreview" title="">
+            <input name="profileImage" type="file" id="wizard-picture" class="form-control">
+          </div>
+          <h6 class="">Choose Picture</h6>
+
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <label for="name" class="col-sm-3 control-label">Name*</label>
+        <div class="col-sm-9">
+          <input name="name" type="text" id="name" placeholder="Patients Name" class="form-control" autofocus>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address" class="col-sm-3 control-label">Address*</label>
+        <div class="col-sm-9">
+          <input name="address" type="text" id="address" placeholder="Address" class="form-control" autofocus>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label">Email*</label>
+        <div class="col-sm-9">
+          <input name="email" type="email" id="email" placeholder="Email" class="form-control" name="email">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">Password*</label>
+        <div class="col-sm-9">
+          <input name="password" type="password" id="password" placeholder="Password" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="age" class="col-sm-3 control-label">Age*</label>
+        <div class="col-sm-9">
+          <input name="age" type="number" id="age" placeholder="Enter patients age" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber" class="col-sm-3 control-label">Phone number*</label>
+        <div class="col-sm-9">
+          <input name="phone" type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control">
+          <span class="help-block">Please provide valid number to keep you updated.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3">Time-shift*</label>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="radio-inline">
+                <input name="timeShift" type="radio" id="dayShift" value="Day-shift">Day-shift
+              </label>
+            </div>
+            <div class="col-sm-4">
+              <label class="radio-inline">
+                <input name="timeShift" type="radio" id="nightShift" value="Night-shift">Night-shift
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3">Gender*</label>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="radio-inline">
+                <input name="gender" type="radio" id="gender_Female" value="Female">Female
+              </label>
+            </div>
+            <div class="col-sm-4">
+              <label class="radio-inline">
+                <input name="gender" type="radio" id="gender_Male" value="Male">Male
+              </label>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /.form-group -->
+
+      <hr class="featurette-divider" style="background-color: coral">
+
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+          <span class="help-block">*Required fields</span>
+          <span class="help-block">***Conditions***
+            <ul>
+              <li>Day-Shift(10:00am-7:00pm) | Night-Shift(10:00pm-7:00am)</li>
+              <li>Takecare of poop and pee of patients if required.</li>
+              <li>Feeding, bathing, take them on walks and helping in exercise if required.</li>
+            </ul>
+          </span>
+
+          <span class="help-block"></span>
+        </div>
+      </div>
+
+
+      <p style="color: #FF0000; font-weight: bold;">I have read and agree to the terms and conditions
+        <input type="checkbox" id="termsChkbx" onclick="change_button(this, 'someBtn')"></input>
+      </p>
+      <button type="submit" id="someBtn" class="btn btn-primary btn-block" disabled="disabled">Register</button>
+    </form> <!-- /form -->
+  </div> <!-- ./container -->
+</div>
+<%- include("partials/footer"); -%>

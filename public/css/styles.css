@@ -1,5 +1,6 @@
 body{
   background-color: #ffefcf;
+  font-size: 17px;
 }
 html {
   min-height: 100%;
@@ -24,12 +25,15 @@ html {
     margin-bottom: 0;
     letter-spacing: 2px;
     background-color: #e2703a;
-    padding: 0;
+    /* padding: 0; */
 }
 .navbar-nav  li a:hover {
     color: #e2703a !important;
 }
-
+.navbar-brand{
+  font-size: larger;
+  padding-top: 10px;
+}
 .heading{
   padding-top: 20px;
   padding-bottom: 20px;
@@ -64,8 +68,11 @@ html {
 	font-size: 12px;
   color: #fff;
 }
-
-/* -------------------------caretaker details-------------------------------------------- */
+#someBtn{
+  height: 40px;
+  font-size: large;
+}
+/* -----------------------------------------------------------------caretaker details----------------------------------------------------------------------------- */
 
 .main-body{
   padding-top: 5%;
@@ -102,9 +109,13 @@ html {
 }
 .card-body{
   color: #fff;
+  font-size: 1.3rem;
+}
+.card-title{
+  font-size: 1.5rem;
 }
 
-/* ------------------------------------------caretakerProfile------------------------------------------------------ */
+/* --------------------------------------------------------------------caretakerProfile----------------------------------------------------------------------- */
 
 .profile_image{
   width: 200px;
@@ -112,9 +123,9 @@ html {
   position: relative;
   left: -50px;
 }
-/* ----------------------------------------------home page---------------------------------------------------------------- */
 
 
+/* ----------------------------------------------------------------------------home page---------------------------------------------------------------- */
 
 
 /* Carousel Header Styles */
@@ -255,7 +266,7 @@ html {
   padding-bottom: 20px;
 }
 .feature-title{
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   margin-top: 15px;
   margin-bottom: 15px;
 }
@@ -280,7 +291,6 @@ html {
   height: 200px;
   border-radius: 15px 50px 30px;
   border: 5px solid #e9896a;
-  cursor: pointer;
   transition: all 0.2s ease-out;
 }
 .feature-img:hover {
@@ -291,11 +301,12 @@ html {
   transform: scale(1.01) translateY(0.2rem);
 }
 
-/* ------------------------------------------------------------------caretaker section-------------------------------------------------------------- */
+/* Caretaker section */
 
 .color-section{
   background-color: #e9896a;
   color: #fff;
+  margin-top: 50px;
 }
 
 
@@ -304,13 +315,15 @@ html {
   margin: 80px;
     margin-top: 30px;
     margin-bottom: 60px;
-    font-size: 1.50rem;
+    /* font-size: 1.5rem; */
 }
-
+.lead{
+  font-size: 1.25rem;
+  font-weight: 350;
+}
 .display-4{
-  /* font-family: 'Archivo', sans-serif; */
-  /* font-family: 'Domine', serif; */
-  font-size: 5rem;
+  font-family: 'Domine', serif;
+  font-size: 4rem;
 }
 /* ------------------------------------------------------------------------patient registration form------------------------------------------------------- */
 
@@ -329,7 +342,7 @@ html {
 }
 
 *[role="form"] h2 {
-    /* font-family: 'Open Sans' , sans-serif; */
+    font-family: 'Open Sans' , sans-serif;
     font-size: 40px;
     font-weight: 600;
     color: #000000;
@@ -338,12 +351,15 @@ html {
     text-transform: uppercase;
     letter-spacing: 4px;
 }
+.form-control{
+  font-size: 1.5rem;
+}
 .container{
   margin-top: 0;
 }
 
-/* ----------------------------------------------------------------------------------------------------------------- */
-/*Profile Pic Start*/
+/* -----------------------------------------------------------------Profile Pic----------------------------------------------------------------------------------------- */
+
 .picture-container{
     position: relative;
     cursor: pointer;
@@ -391,4 +407,192 @@ html {
     width: 100%;
 
 }
-/*Profile Pic End*/
+
+/* -----------------------------------------------Patients Login form--------------------------------------------------------------------------------------------------*/
+
+
+/* Text Align */
+.text-c {
+    text-align: center;
+}
+.text-l {
+    text-align: left;
+}
+.text-r {
+    text-align: right
+}
+.text-j {
+    text-align: justify;
+}
+
+/* Text Color */
+.text-whitesmoke {
+    color: whitesmoke
+}
+.text-darkyellow {
+    color: #e2703a;
+}
+
+/* Lines */
+
+.line-b {
+    border-bottom: 1px solid #FFEB3B !important;
+}
+
+/* Buttons */
+.button {
+    border-radius: 3px;
+}
+.form-button {
+    background-color: rgba(226,112,58, 0.8);
+    border-color: rgba(226,112,58, 0.8);
+    color: #e6e6e6;
+}
+.form-button:hover,
+.form-button:focus,
+.form-button:active,
+.form-button.active,
+.form-button:active:focus,
+.form-button:active:hover,
+.form-button.active:hover,
+.form-button.active:focus {
+    background-color: rgba(226,112,58, 0.473);
+    border-color: rgba(226,112,58, 0.473);
+    color: #e6e6e6;
+}
+.button-l {
+    width: 100% !important;
+}
+
+/* Margins g(global) - l(left) - r(right) - t(top) - b(bottom) */
+
+.margin-g {
+    margin: 15px;
+}
+.margin-g-sm {
+    margin: 10px;
+}
+.margin-g-md {
+    margin: 20px;
+}
+.margin-g-lg {
+    margin: 30px;
+}
+
+.margin-l {
+    margin-left: 15px;
+}
+.margin-l-sm {
+    margin-left: 10px;
+}
+.margin-l-md {
+    margin-left: 20px;
+}
+.margin-l-lg {
+    margin-left: 30px;
+}
+
+.margin-r {
+    margin-right: 15px;
+}
+.margin-r-sm {
+    margin-right: 10px;
+}
+.margin-r-md {
+    margin-right: 20px;
+}
+.margin-r-lg {
+    margin-right: 30px;
+}
+
+.margin-t {
+    margin-top: 15px;
+}
+.margin-t-sm {
+    margin-top: 10px;
+}
+.margin-t-md {
+    margin-top: 20px;
+}
+.margin-t-lg {
+    margin-top: 30px;
+}
+
+.margin-b {
+    margin-bottom: 15px;
+}
+.margin-b-sm {
+    margin-bottom: 10px;
+}
+.margin-b-md {
+    margin-bottom: 20px;
+}
+.margin-b-lg {
+    margin-bottom: 30px;
+}
+
+/* Bootstrap Form Control Extension */
+
+.form-control,
+.border-line {
+    background-color: #5f5f5f;
+    background-image: none;
+    border: 1px solid #424242;
+    border-radius: 1px;
+    color: inherit;
+    display: block;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+.form-control:focus,
+.border-line:focus {
+    background-color: #616161;
+    color: #e6e6e6;
+}
+.form-control,
+.form-control:focus {
+    box-shadow: none;
+}
+.form-control::-webkit-input-placeholder { color: #BDBDBD; }
+
+/* Container */
+
+.container-content {
+    background-color: #3a3a3aa2;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+}
+
+/* Backgrounds */
+
+.main-bg {
+
+    background: #424242;
+    background: linear-gradient( #424242, #212121);
+}
+
+/* Login & Register Pages*/
+
+.login-container {
+    max-width: 400px;
+    z-index: 100;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+.login.login-container {
+    width: 300px;
+}
+.wrapper.login-container {
+    margin-top: 140px;
+}
+.logo-badge {
+    color: #e6e6e6;
+    font-size: 80px;
+    font-weight: 800;
+    letter-spacing: -10px;
+    margin-bottom: 0;
+}

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 require('dotenv/config');
-// const ejs = require("ejs");
+const ejs = require("ejs");
 const _ = require("lodash");
 
 const mongoose = require('mongoose');
@@ -90,7 +90,9 @@ const item1 = new caretakerModel({
   timeShift: "Day-Shift(10:00am-7:00pm)",
   imgURL: "profile.jpg",
   phone: "+123 456 789",
-  email: "p@phoebe.com"
+  username: "p@phoebe.com",
+  password: "123",
+  note: "This is a sample profile."
 });
 
 
@@ -135,7 +137,9 @@ app.post('/caretakerRegister', upload.single('imgURL'), (req, res, next) => {
     imgURL: req.file.filename,
     gender: req.body.gender,
     phone: req.body.phone,
-    username: req.body.username
+    username: req.body.username,
+    password: req.body.password,
+    note: req.body.note
   }
 
   caretakerModel.create(obj, (err, item) => {
@@ -196,8 +200,8 @@ app.get("/contacts/:_id", function(req, res) {
           timeShift: contact.timeShift,
           imgURL: contact.imgURL,
           phone: contact.phone,
-          email: contact.email,
-          more: contact.more
+          username: contact.username,
+          note: contact.note
         });
       }
     });
@@ -245,30 +249,6 @@ app.post('/patientRegister', function(req, res) {
 
 });
 
-// app.get('/caretakerLogin', function(req, res) {
-//   res.render('caretakerLogin');
-// });
-//
-// app.post('/caretakerLogin', function(req, res) {
-//
-//   const username = req.body.username;
-//   const password = req.body.password;
-//
-//   caretakerModel.findOne({
-//     email: username
-//   }, function(err, foundUser) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       if (foundUser) {
-//         if (foundUser.password === password) {
-//           console.log("User Exists!");
-//           // res.render("/");
-//         }
-//       }
-//     }
-//   })
-// })
 
 app.get('/patientLogin', function(req, res) {
   res.render('patientLogin');
@@ -293,12 +273,52 @@ app.post('/patientLogin', function(req, res) {
   });
   });
 
-
 app.get('/logout', function(req,res){
   req.logout();
   res.redirect('/');
 });
 
+app.get("/deleteAccount", function(req, res){
+  res.render('deleteAccount');
+});
+
+app.post('/deleteAccount', function(req, res){
+
+  const user = req.body.user;
+  const password = req.body.password;
+  const email = req.body.username;
+
+  if(user === "caretakers"){
+
+    caretakerModel.findOneAndDelete({username:email, password:password}, (err, item) => {
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log("Your caretaker profile has been deleted");
+        res.redirect('/');
+      }
+    });
+  } else {
+    if(req.isAuthenticated()){
+      patientModel.findOneAndDelete({username:email}, (err, item) => {
+        if(err){
+          console.log(err);
+        }
+        else{
+          console.log("Your patient profile has been deleted");
+          res.redirect('/');
+        }
+      });
+    }else{
+      console.log("Login before deleting your account");
+      res.redirect('/patientLogin');
+    }
+
+  }
+
+
+});
 
 
 

@@ -20,7 +20,9 @@ var caretakerSchema = new mongoose.Schema({
   timeShift: String,
   imgURL: String,
   phone: String,
-  email: String
+  username: String,
+  password: String,
+  note: String
 });
 
 // caretakerSchema.plugin(passportLocalMongoose);

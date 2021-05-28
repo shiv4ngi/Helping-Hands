@@ -1,3 +1,5 @@
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 <%- include("partials/header"); -%>
 
 <!-- <h1 class="heading">Welcome to caretakerDetails</h1> -->
@@ -10,7 +12,7 @@
     <div class="card" >
       <a href="/contacts/<%=contact.id%>" class="btn-custom" style="text-decoration:none">
 
-      <img src="/images/<%=contact.imgURL%>" class="circle-img" alt="...">
+      <img src="/uploads/<%=contact.imgURL%>" class="circle-img" alt="...">
       <div class="card-body">
         <h5 class="card-title"><%=contact.name%></h5>
         <p class="card-text"><%= contact.timeShift%></p>

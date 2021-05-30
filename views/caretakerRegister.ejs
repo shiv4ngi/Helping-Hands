@@ -16,80 +16,76 @@
 <script type="text/javascript">
   function validform() {
 
-        var a = document.forms["my-form"]["name"].value;
-        var b = document.forms["my-form"]["username"].value;
-        var c = document.forms["my-form"]["age"].value;
-        var d = document.forms["my-form"]["address"].value;
-        var e = document.forms["my-form"]["phone"].value;
-        var f = document.forms["my-form"]["salary"].value;
-        var checked_gender = document.querySelector('input[name = "gender"]:checked');
-        var checked_shift = document.querySelector('input[name = "timeShift"]:checked');
+    var a = document.forms["my-form"]["name"].value;
+    var b = document.forms["my-form"]["username"].value;
+    var c = document.forms["my-form"]["age"].value;
+    var d = document.forms["my-form"]["address"].value;
+    var e = document.forms["my-form"]["phone"].value;
+    var f = document.forms["my-form"]["salary"].value;
+    var g = document.forms["my-form"]["password"].value;
+    var checked_gender = document.querySelector('input[name = "gender"]:checked');
+    var checked_shift = document.querySelector('input[name = "timeShift"]:checked');
 
-        if (a==null || a=="")
-        {
-            alert("Please Enter Your Full Name");
-            return false;
-        }else if (b==null || b=="")
-        {
-            alert("Please Enter Your Email Address");
-            return false;
-        }else if (c==null || c=="")
-        {
-            alert("Please Enter your Age");
-            return false;
-        }else if (d==null || d=="")
-        {
-            alert("Please Enter Your Permanent Address");
-            return false;
-        }else if (e==null || e=="")
-        {
-            alert("Please Enter Your Phone Number");
-            return false;
-        }else if (f==null || f=="")
-        {
-            alert("Please Enter Your Expected Salary");
-            return false;
-        }else if(checked_gender == null)
-        {
-            alert('Gender not specified.');
-            return false;
-          }else if(checked_shift == null)
-          {
-             alert('Time shift not specified.');
-             return false;
-          }
-
+    if (a == null || a == "") {
+      alert("Please Enter Your Full Name");
+      return false;
+    } else if (b == null || b == "") {
+      alert("Please Enter Your Email Address");
+      return false;
+    } else if (c == null || c == "") {
+      alert("Please Enter your Age");
+      return false;
+    } else if (d == null || d == "") {
+      alert("Please Enter Your Permanent Address");
+      return false;
+    } else if (e == null || e == "") {
+      alert("Please Enter Your Phone Number");
+      return false;
+    } else if (f == null || f == "") {
+      alert("Please Enter Your Expected Salary");
+      return false;
+    } else if (checked_gender == null) {
+      alert('Gender not specified.');
+      return false;
+    } else if (checked_shift == null) {
+      alert('Time shift not specified.');
+      return false;
+    } else if (g == null || g == "") {
+      alert("Please Enter Your Password");
+      return false;
     }
-</script>
-
-<script type="text/javascript">
-  function change_button(termsChkbx,someBtn) {
-  var btn = document.getElementById(someBtn);
-  if (termsChkbx.checked == true) {
-    btn.disabled = "";
-  } else {
-    btn.disabled = "disabled";
   }
-}
 </script>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-// Prepare the preview for profile picture
-    $("#wizard-picture").change(function(){
-        readURL(this);
-    });
-});
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
-        }
-        reader.readAsDataURL(input.files[0]);
+  function change_button(termsChkbx, someBtn) {
+    var btn = document.getElementById(someBtn);
+    if (termsChkbx.checked == true) {
+      btn.disabled = "";
+    } else {
+      btn.disabled = "disabled";
     }
-}
+  }
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Prepare the preview for profile picture
+    $("#wizard-picture").change(function() {
+      readURL(this);
+    });
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
 </script>
 
 
@@ -117,26 +113,33 @@ function readURL(input) {
         </div>
       </div>
 
-<br>
+      <br>
 
       <div class="form-group">
-        <label for="name" class="col-sm-3 control-label">Name</label>
+        <label for="name" class="col-sm-3 control-label">Name*</label>
         <div class="col-sm-9">
           <input name="name" type="text" id="name" placeholder="Name" class="form-control" autofocus>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="address" class="col-sm-3 control-label">Address</label>
+        <label for="address" class="col-sm-3 control-label">Address*</label>
         <div class="col-sm-9">
           <input name="address" type="text" id="address" placeholder="Address" class="form-control" autofocus>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="email" class="col-sm-3 control-label">Email</label>
+        <label for="email" class="col-sm-3 control-label">Email*</label>
         <div class="col-sm-9">
           <input name="username" type="email" id="email" placeholder="Email" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">Password*</label>
+        <div class="col-sm-9">
+          <input name="password" type="password" id="password" placeholder="Password" class="form-control">
         </div>
       </div>
 
@@ -161,6 +164,8 @@ function readURL(input) {
           <input name="salary" type="number" id="salary" placeholder="Please write your expected salary" class="form-control">
         </div>
       </div>
+
+
 
       <div class="form-group">
         <label class="control-label col-sm-3">Time-shift*</label>
@@ -196,7 +201,17 @@ function readURL(input) {
             </div>
           </div>
         </div>
-      </div> <!-- /.form-group -->
+      </div>
+
+      <div class="form-group">
+        <label for="notes" class=" col-sm-3 control-label">Additional information</label>
+        <div  class="col-sm-9">
+            <textarea class="form-control" name="postBody" rows="5" cols="30" maxlength = "250" placeholder="If any skills you've that might help the patient tell us. It will appear on your profile write carefully within 250 characters."></textarea>
+        </div>
+
+      </div>
+
+      <!-- /.form-group -->
 
       <hr class="featurette-divider" style="background-color: coral">
 
@@ -217,7 +232,7 @@ function readURL(input) {
 
 
       <p style="color: #FF0000; font-weight: bold;">I have read and agree to the terms and conditions
-      <input type="checkbox" id="termsChkbx" onclick="change_button(this, 'someBtn')"></input>
+        <input type="checkbox" id="termsChkbx" onclick="change_button(this, 'someBtn')"></input>
       </p>
       <button type="submit" id="someBtn" class="btn btn-primary btn-block" disabled="disabled">Register</button>
     </form> <!-- /form -->

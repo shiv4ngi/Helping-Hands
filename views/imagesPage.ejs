@@ -1,4 +1,4 @@
-<h1>To Upload Image on mongoDB</h1>
+ <!-- <h1>To Upload Image on mongoDB</h1>
     <hr>
     <div>
         <form action="/" method="POST" enctype="multipart/form-data">
@@ -24,24 +24,17 @@
         </form>
     </div>
 
-    <hr>
-
-    <h1>Uploaded Images</h1>
-    <div>
-        <% items.forEach(function(image) { %>
-        <div>
-            <div>
-                <img src="data:image/<%=image.img.contentType%>;base64,
-                     <%=image.img.data.toString('base64')%>">
-                <div>
-                    <h5><%= image.name %></h5>
+    <hr> -->
 
 
-<p><%= image.desc %></p>
 
 
-                </div>
-            </div>
-        </div>
-        <% }) %>
-    </div>
+
+      <h2>Your avatar</h2>
+
+      <form method="POST" action="/imagesPages">
+        <input type="hidden" id="avatar-url" name="avatar-url" value="/uploads/profile.jpg">
+        <input type="text" name="username" placeholder="Username"><br>
+        <input type="text" name="full-name" placeholder="Full name"><br>
+        <input type="submit" value="Update profile">
+      </form>

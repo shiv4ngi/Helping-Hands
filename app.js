@@ -13,6 +13,13 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 
+// const cors = require("cors");
+// app.use(cors());
+//
+// const upload = require("./services/ImageUpload.js");
+// const singleUpload = upload.single("imgURL");
+
+import s3 from './s3.js'
 
 //set up EJS
 
@@ -62,7 +69,7 @@ const homeStartingContent = "Here at Helping Hands we have taken a step towards 
 
 
 //set up multer for storing uploaded files
-
+/*
 var multer = require('multer');
 
 var storage = multer.diskStorage({
@@ -75,7 +82,27 @@ var storage = multer.diskStorage({
 
 var upload = multer({
   storage: storage
-});
+});*/
+
+// const multer = require('multer');
+// const AWS = require('aws-sdk');
+// const uuid = require('uuid').v4
+//
+// const s3 = new AWS.S3({
+//   accessKeyId: process.env.AWS_ID,
+//   secretAccessKey: process.env.AWS_SECRET_KEY
+// })
+//
+// const storage = multer.memoryStorage({
+//   destination: function(req, file, callback) {
+//     callback(null, '')
+//   }
+// })
+//
+// const upload = multer({storage}).single('imgURL')
+
+
+
 
 //load the mongoose model
 
@@ -123,8 +150,24 @@ app.get('/caretakerRegister', function(req, res) {
 
 
 //the POST handler for processing the uploaded file
+/*
+app.post('/caretakerRegister', upload, (req, res, next) => {
 
-app.post('/caretakerRegister', upload.single('imgURL'), (req, res, next) => {
+  let myFile = req.file.originalname.split(".")
+  const fileType = myFile[myFile.length - 1]
+
+  const params = {
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: `${uuid()}.${fileType}`,
+    Body: req.file.buffer
+  }
+
+    s3.upload(params, (error, data) => {
+      if(error){
+        res.status(500).send(error)
+      }
+      res.status(200).send(data)
+    })
 
   var obj = {
     name: req.body.name,
@@ -132,7 +175,7 @@ app.post('/caretakerRegister', upload.single('imgURL'), (req, res, next) => {
     address: req.body.address,
     salary: req.body.salary,
     timeShift: req.body.timeShift,
-    imgURL: req.file.filename,
+    imgURL: req.file.originalname,
     gender: req.body.gender,
     phone: req.body.phone,
     username: req.body.username
@@ -146,8 +189,34 @@ app.post('/caretakerRegister', upload.single('imgURL'), (req, res, next) => {
       res.redirect('/');
     }
   });
-});
+});*/
 
+app.post('/caretakerRegister', upload, (req, res, next) => {
+
+
+  var obj = {
+    name: req.body.name,
+    age: req.body.age,
+    address: req.body.address,
+    salary: req.body.salary,
+    timeShift: req.body.timeShift,
+    imgURL: req.file.originalname,
+    gender: req.body.gender,
+    phone: req.body.phone,
+    username: req.body.username,
+    password: req.body.password,
+    note: req.body.note
+  }
+
+  caretakerModel.create(obj, (err, item) => {
+    if (err) {
+      console.log(err);
+    } else {
+      item.save();
+      res.redirect('/');
+    }
+  });
+});
 
 app.get('/caretakerDetails', function(req, res) {
 
@@ -300,7 +369,9 @@ app.get('/logout', function(req,res){
 });
 
 
-
+app.get('/imagesPage', function(req, res){
+  res.render('imagesPage');
+});
 
 
 let port = process.env.PORT;

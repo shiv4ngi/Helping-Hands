@@ -12,15 +12,16 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
-
+const flash = require("connect-flash");
 
 //set up EJS
-
+app.use(flash());
 app.use(bodyParser.urlencoded({
   extended: false
 }))
 app.use(bodyParser.json())
 app.use(express.static("public"));
+
 
 // Set EJS as templating engine
 app.set("view engine", "ejs");
@@ -250,28 +251,17 @@ app.post('/patientRegister', function(req, res) {
 });
 
 
-app.get('/patientLogin', function(req, res) {
-  res.render('patientLogin');
+app.get('/patientLogin', (req, res, next) => {
+  res.render('patientLogin', { "message": req.flash("error") });
 });
 
-app.post('/patientLogin', function(req, res) {
+app.post("/patientLogin", passport.authenticate("local", {
+  successRedirect: "/caretakerDetails",
+  failureRedirect: "/patientLogin",
+  failureFlash: 'Invalid username or password.',
+  successFlash: 'Login Successful!'
 
-
-  const user = new patientModel({
-    username: req.body.username,
-    password: req.body.password
-  });
-
-  req.login(user, function(err) {
-    if (err) {
-      console.log(err);
-    } else {
-      passport.authenticate('local')(req, res, function() {
-        res.redirect("/caretakerDetails");
-      });
-    }
-  });
-  });
+}));
 
 app.get('/logout', function(req,res){
   req.logout();

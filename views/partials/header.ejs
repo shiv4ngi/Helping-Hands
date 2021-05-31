@@ -32,8 +32,14 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
               <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-              <a class="nav-link" href="#caretakerRegisteration">Caretakers Registeration</a>
-              <a class="nav-link" href="/logout">Logout</a>
+              <% if(isAuthenticated){ %>
+                <a class="nav-link" href="/caretakerRegister">Caretakers Registeration</a>
+                <a class="nav-link" href="/logout">Logout</a>
+              <% } else{ %>
+                <a class="nav-link" href="#caretakerRegisteration">Caretakers Registeration</a>
+                <a class="nav-link" href="/patientLogin">Login</a>
+              <% } %>
+
             </div>
           </div>
         </div>

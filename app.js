@@ -32,6 +32,11 @@ app.use(session({
   saveUninitialized: false
 }));
 
+app.use(function(req, res, next){
+  res.locals.isAuthenticated = req.isAuthenticated();
+  next();
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 

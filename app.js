@@ -16,6 +16,9 @@ const flash = require("connect-flash");
 
 //set up EJS
 app.use(flash());
+
+
+
 app.use(bodyParser.urlencoded({
   extended: false
 }))
@@ -32,10 +35,6 @@ app.use(session({
   saveUninitialized: false
 }));
 
-app.use(function(req, res, next){
-  res.locals.isAuthenticated = req.isAuthenticated();
-  next();
-});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -62,6 +61,13 @@ passport.use(patientModel.createStrategy());
 passport.serializeUser(patientModel.serializeUser());
 passport.deserializeUser(patientModel.deserializeUser());
 
+
+app.use(function (req, res, next){
+  res.locals.isAuthenticated = req.isAuthenticated();
+  // console.log("Is isAuthenticated checked"+ res.locals.isAuthenticated +  "  " + req.isAuthenticated());
+  next();
+}
+);
 // -----------------------------------------------------------------------------------------------------------------------------
 
 const homeStartingContent = "Here at Helping Hands we have taken a step towards helping people. TAKING CARE OF PATIENTS emphasizes objective, professional care, such as the medical and psychological aspects of nursing. CARING FOR PATIENT is our sole objective. Young people are taking part in helping people and giving the support they need.";
@@ -270,6 +276,7 @@ app.post("/patientLogin", passport.authenticate("local", {
 
 app.get('/logout', function(req,res){
   req.logout();
+  req.session.destroy();
   res.redirect('/');
 });
 

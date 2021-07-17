@@ -153,6 +153,7 @@ app.post('/caretakerRegister', upload.single('imgURL'), (req, res, next) => {
     password: req.body.password,
     note: req.body.note
   }
+  console.log(obj);
 
   caretakerModel.create(obj, (err, item) => {
     if (err) {
